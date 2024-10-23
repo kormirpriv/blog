@@ -1,19 +1,34 @@
 <!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Django KORMIR blog</title>
+    <title>Django KorMir blog</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
 </head>
 <body>
      <h1><a href="/">Django KorMir Blog</a></h1>
-    <div>
-           {% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
+    <div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            <p>published: {{ post.published_date }}</p>
+                        </div>
+                        <h2><a href="">{{ post.title }}</a></h2>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+        </div>
     </div>
-    {% endfor %}
-    </div>
+</div>
 </body>
 </html>
