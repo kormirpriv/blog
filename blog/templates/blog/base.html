@@ -11,7 +11,11 @@
        <body>
     <div class="page-header">
         {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        {% else %}
+        <a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
         {% endif %}
         <h1><a href="/">Django KorMir Blog</a></h1>
     </div>
